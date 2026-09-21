@@ -20,7 +20,8 @@ A Python ETL pipeline and a four-page Power BI report that answer core people-an
 8. [Validation](#validation)
 9. [Assumptions and limitations](#assumptions-and-limitations)
 10. [How to run this project](#how-to-run-this-project)
-11. [License.md](#license)
+11. [AI assistance](#ai-assistance)
+12. [License.md](#license)
 
 ---
 
@@ -207,16 +208,17 @@ Hires by month and department, promotions per month (Promotion events only), and
 
 ## Validation
 
-Measures were reconciled against independent pandas calculations from the CSVs.
+Claude independently recomputed the figures below from the generated CSVs with pandas and compared them with the values shown in the report.
 
-| Check | Power BI | pandas |
+| Check | Report | Recomputed from CSVs |
 |---|---|---|
 | 2019: hires / terminations / EOP / turnover | 148 / 4 / 144 / 5.56% | 148 / 4 / 144 / 5.56% |
 | 2024 turnover (YTD, December) | 8.75% | 8.75% |
 | 2025: hires / terminations / EOP / turnover | 147 / 125 / 717 / 17.71% | 147 / 125 / 717 / 17.71% |
-| Hires - terminations = change in month-end headcount | all 84 months | all 84 months |
-| Page 3 headcount by department, job level, tenure band | matches | matches |
-| Promotions by month, avg. tenure at exit by department | matches | matches |
+| Page 3 headcount by department, job level, tenure band (2022, 2025) | matches | matches |
+| Promotions by month, avg. tenure at exit by department (2022, 2025) | matches | matches |
+
+The recomputation also confirmed that hires minus terminations equals the change in month-end headcount in all 84 months once the snapshot excludes people terminated on the month-end date.
 
 ---
 
@@ -266,10 +268,21 @@ The parameter value stored in this repository is the author's local path, so ref
 
 ---
 
+## AI assistance
+
+I used AI assistants (Claude and Microsoft Copilot) while building this project. Its goal was to improve my Python and Power BI skills, so I used them as reviewers and advisors, not as authors of the solution:
+
+- **Report themes** (`config/`): generated with Copilot.
+- **Documentation:** the README was drafted with AI assistance and edited by me.
+- **Validation:** Claude independently recomputed the key figures from the generated CSVs with pandas and compared them with the values shown in the report (see [Validation](#validation)).
+- **Code, data model and DAX:** I designed the data model, wrote the ETL script and built the report. AI helped me review DAX measures, fix syntax and logic errors, apply patterns for year-to-date and rolling calculations, and spot edge cases in the data. The main design decisions, such as building the employee master and monthly snapshot tables, were mine.
+
+---
+
 ## License
 
 Released under the [PolyForm Noncommercial License 1.0.0](LICENSE). You may read, run and modify the code and report for any noncommercial purpose, including personal study, research and education. Commercial use requires permission from the author.
 
 ---
 
-**Author:** [TODO: your name and link, e.g. LinkedIn]
+**Author:** Błażej Koziarek https://github.com/bkoziarek/
