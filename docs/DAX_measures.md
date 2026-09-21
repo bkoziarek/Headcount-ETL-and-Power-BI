@@ -1,3 +1,5 @@
+#DAX measures
+
 Headcount (EOP) = 
 VAR CurrentDate = EOMONTH(MAX(Calendar[Date]),0)
 RETURN
@@ -97,3 +99,45 @@ TOTALYTD(
 )
 
 Turnover (YTD) = DIVIDE([Terminations (YTD)]+0,[Avg. Headcount (YTD)])
+
+#CALCULATED COLUMNS
+
+##fact_employee_master
+
+TermReason = IF(LEFT(fact_employee_master[Event],11) = "Termination", MID(fact_employee_master[Event],14,20)
+)
+
+TenureAtExitYrs = 
+IF (
+    LEFT ( fact_employee_master[Event], 11 ) = "Termination",
+    DIVIDE (
+        DATEDIFF ( RELATED ( dim_employee[HireDate] ), fact_employee_master[EffectiveFrom], DAY ),
+        365.25 -- taking fractional years into consideration
+    )
+)
+
+
+##fact_monthly_snapshot
+
+HireDate = RELATED(dim_employee[HireDate]) 
+
+Tenure Years = 
+DIVIDE(
+    DATEDIFF(
+        fact_monthly_snapshot[HireDate],
+        fact_monthly_snapshot[MonthEnd],
+        DAY
+    ),
+    365.25  -- taking fractional years into consideration
+)
+
+Tenure Bucket = 
+VAR TenureYrs = [Tenure Years]
+RETURN
+SWITCH(
+    TRUE(),
+    TenureYrs < 1, "<1 year",
+    TenureYrs < 3, "1–3 years",
+    TenureYrs < 5, "3–5 years",
+    "5+ years"
+)
