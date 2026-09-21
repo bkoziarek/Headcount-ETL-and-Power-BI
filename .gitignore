@@ -1,0 +1,20 @@
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+ 
+# Pipeline logs (run artifacts). Keep the folder with an empty .gitkeep
+data/logs/*
+!data/logs/.gitkeep
+ 
+# Power BI local-only files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+ 
+# OS
+Thumbs.db
+.DS_Store*.lnk
+*.lnk

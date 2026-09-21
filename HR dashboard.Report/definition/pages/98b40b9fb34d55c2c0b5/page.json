@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "98b40b9fb34d55c2c0b5",
+  "displayName": "Turnover Analysis",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "3797fca320cd8c9d8409",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#d0eef7'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "75D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

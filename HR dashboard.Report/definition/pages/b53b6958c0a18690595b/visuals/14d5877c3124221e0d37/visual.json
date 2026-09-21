@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "14d5877c3124221e0d37",
+  "position": {
+    "x": 188.86699507389162,
+    "y": 273.10344827586209,
+    "z": 2000,
+    "height": 209.45454545454547,
+    "width": 1041.9020979020979,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "Year-Month"
+                }
+              },
+              "queryRef": "Calendar.Year-Month",
+              "nativeQueryRef": "Year-Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Avg. Headcount"
+                }
+              },
+              "queryRef": "(_Measures).Avg. Headcount",
+              "nativeQueryRef": "Avg. Headcount"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

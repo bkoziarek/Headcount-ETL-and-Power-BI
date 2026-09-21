@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["dim_department","dim_employee","dim_joblevel","fact_employee_master","fact_monthly_snapshot","DataPath"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_department
+ref table dim_employee
+ref table DateTableTemplate_da7ef094-5bfb-4745-94ee-37e013b74370
+ref table LocalDateTable_5849c061-ca35-412e-bc26-76e564680214
+ref table LocalDateTable_3aa0b4e8-397e-46e8-a261-0bfd0bfe2d9c
+ref table dim_joblevel
+ref table fact_employee_master
+ref table fact_monthly_snapshot
+ref table Calendar
+ref table (_Measures)
+ref table LocalDateTable_e78b73b1-2a15-4702-b9d7-5a91321eeb14
+
+ref cultureInfo en-US
+

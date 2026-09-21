@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "7da7c18048a3717e9083",
+  "position": {
+    "x": 171.13300492610838,
+    "y": 350.2463054187192,
+    "z": 4000,
+    "height": 355.56650246305418,
+    "width": 340.49261083743841,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_department"
+                    }
+                  },
+                  "Property": "DepartmentName"
+                }
+              },
+              "queryRef": "dim_department.DepartmentName",
+              "nativeQueryRef": "DepartmentName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Avg. Tenure at Exit"
+                }
+              },
+              "queryRef": "(_Measures).Avg. Tenure at Exit",
+              "nativeQueryRef": "Avg. Tenure at Exit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "(_Measures)"
+                  }
+                },
+                "Property": "Avg. Tenure at Exit"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

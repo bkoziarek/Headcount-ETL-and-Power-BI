@@ -1,0 +1,7 @@
+expression DataPath = "C:\BI projects\Python BI\Headcount\data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: cef124b2-9bed-4e09-af6e-ec467c5b9f53
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,62 @@
+{
+  "name": "Dark Green New Card Theme",
+
+  "dataColors": [
+    "#0B5345",
+    "#1E8449",
+    "#52BE80",
+    "#A9DFBF",
+    "#D5F5E3"
+  ],
+
+  "background": "#FFFFFF",
+  "foreground": "#333333",
+  "tableAccent": "#0B5345",
+
+  "visualStyles": {
+    "cardEx": {
+      "*": {
+        "general": [
+          {
+            "transparency": 0,
+            "border": "none",
+            "outline": "none",
+            "cornerRadiusTopLeft": 6,
+            "cornerRadiusTopRight": 6,
+            "cornerRadiusBottomLeft": 6,
+            "cornerRadiusBottomRight": 6,
+            "paddingTop": 12,
+            "paddingBottom": 12,
+            "paddingLeft": 12,
+            "paddingRight": 12
+          }
+        ],
+
+        "category": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 12,
+            "color": { "solid": { "color": "#333333" } },
+            "alignment": "left"
+          }
+        ],
+
+        "callout": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 22,
+            "color": { "solid": { "color": "#0B5345" } },
+            "alignment": "right"
+          }
+        ],
+
+        "background": [
+          {
+            "color": { "solid": { "color": "#F7F7F7" } },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

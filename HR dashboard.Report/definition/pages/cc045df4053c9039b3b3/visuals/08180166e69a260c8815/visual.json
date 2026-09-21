@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "08180166e69a260c8815",
+  "position": {
+    "x": 12.413793103448276,
+    "y": 14.187192118226601,
+    "z": 6000,
+    "height": 249.73426573426573,
+    "width": 316.86713286713285,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Headcount Composition",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Who works here, and how is the workforce split?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Headcount ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "at the end of the selected period, by department, job level, gender and tenure. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Tenure ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "is time since hire date, measured to the period end and grouped into <1, 1–3, 3–5 and 5+ years. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The "
+                  },
+                  {
+                    "value": "gender ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "chart shows each department's share, not counts, so departments of different sizes can be compared."
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

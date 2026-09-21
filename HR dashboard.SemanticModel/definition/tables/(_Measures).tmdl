@@ -1,0 +1,206 @@
+table (_Measures)
+	lineageTag: 00535791-8a15-4d5a-9f07-9d511f7765d7
+
+	measure 'Headcount (EOP)' =
+			
+			VAR CurrentDate = EOMONTH(MAX(Calendar[Date]),0)
+			RETURN
+			CALCULATE(
+			DISTINCTCOUNT(fact_monthly_snapshot[EmployeeID]),
+			    fact_monthly_snapshot[MonthEnd] = CurrentDate
+			)
+		formatString: 0
+		displayFolder: Headcount
+		lineageTag: 7124819c-707d-4121-b323-a42a30b905c6
+
+	measure 'Headcount (BOP)' =
+			
+			VAR PreviousMonthEnd =
+			    EOMONTH(MIN('Calendar'[Date]),-1)
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT( fact_monthly_snapshot[EmployeeID] ),
+			    REMOVEFILTERS(fact_monthly_snapshot[MonthEnd]),
+			    TREATAS({PreviousMonthEnd},'Calendar'[Date])
+			)
+		formatString: 0
+		displayFolder: Headcount
+		lineageTag: fcb66f09-388e-4e61-be76-81a36c1576b7
+
+	measure 'Avg. Headcount' = DIVIDE([Headcount (EOP)]+[Headcount (BOP)],2)
+		displayFolder: Headcount
+		lineageTag: d0f6635f-c9d0-4522-a974-2b10895637f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CalendarMaxCheck = MAX('Calendar'[Date])
+		formatString: General Date
+		displayFolder: _Test
+		lineageTag: d0a04565-491b-4d02-942c-4f5a2de0479b
+
+	measure 'New Hires (YTD)' =
+			
+			TOTALYTD(
+			    CALCULATE(
+			        DISTINCTCOUNT(fact_employee_master[EmployeeID]),
+			        FILTER(
+			            fact_employee_master,
+			            fact_employee_master[Event] = "Hire"
+			            )
+			    ),
+			    'Calendar'[Date]
+			)
+		formatString: 0
+		displayFolder: YTD measures
+		lineageTag: 9c5c950f-5cfd-4a21-a719-68e6ef53f749
+
+	measure 'Terminations (YTD)' =
+			
+			TOTALYTD(
+			    CALCULATE(
+			        DISTINCTCOUNT(fact_employee_master[EmployeeID]),
+			        FILTER(
+			            fact_employee_master,
+			            LEFT(fact_employee_master[Event],11) = "Termination"
+			            )
+			    ),
+			    'Calendar'[Date]
+			)
+		formatString: 0
+		displayFolder: YTD measures
+		lineageTag: ed01a3bf-ff3f-4ca6-8f08-b8dc725dc716
+
+	measure 'Turnover (YTD)' = DIVIDE([Terminations (YTD)]+0,[Avg. Headcount (YTD)])
+		displayFolder: YTD measures
+		lineageTag: c3c838d7-bceb-4def-8d55-f7068703f8b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Headcount Change' = [New Hires]-[Terminations]
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: 313df1a1-adfa-427e-9e6d-560aad4c311f
+
+	measure Terminations =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    LEFT ( fact_employee_master[Event], 11 ) = "Termination"
+			)
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: f5335682-9820-4403-a4c5-09ec2b2743bb
+
+	measure 'Avg. Headcount (YTD)' =
+			
+			VAR PriorYearEnd = DATE ( YEAR ( MAX ( 'Calendar'[Date] ) ) - 1, 12, 31 )
+			VAR BOP =
+			    CALCULATE (
+			        DISTINCTCOUNT ( fact_monthly_snapshot[EmployeeID] ),
+			        REMOVEFILTERS ( 'Calendar' ),
+			        fact_monthly_snapshot[MonthEnd] = PriorYearEnd
+			    )
+			RETURN
+			DIVIDE ( BOP + [Headcount (EOP)], 2 )
+		displayFolder: YTD measures
+		lineageTag: 6e825c77-aafb-4118-9a8f-a9a5db5ab696
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'New Hires' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    fact_employee_master[Event] = "Hire"
+			)
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: 191d754b-2746-455d-b86e-088506f820ef
+
+	measure Turnover = DIVIDE([Terminations]+0,[Avg. Headcount])
+		displayFolder: Turnover
+		lineageTag: 42595cf4-1fbf-425d-8bd0-33dcf8fdefd3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Involuntary =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    fact_employee_master[Event] = "Termination: Involuntary"
+			)
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: 7b90d983-f65d-43fe-9b62-a0a2637764a9
+
+	measure Voluntary =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    fact_employee_master[Event] = "Termination: Voluntary"
+			)
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: 910a97a2-69e5-4847-a1c0-911ec7cc2bad
+
+	measure Retirement =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    fact_employee_master[Event] = "Termination: Retirement"
+			)
+		formatString: 0
+		displayFolder: Turnover
+		lineageTag: 829da619-51e6-4113-ac9c-053c63b36543
+
+	measure 'Rolling Turnover 12M' =
+			
+			VAR EndDate   = MAX ( 'Calendar'[Date] )
+			VAR StartDate = EDATE ( EndDate, -12 )
+			VAR Terms =
+			    CALCULATE ( [Terminations], REMOVEFILTERS ( 'Calendar' ), 'Calendar'[Date] > StartDate, 'Calendar'[Date] <= EndDate )
+			VAR AvgHC =
+			    CALCULATE ( [Avg. Headcount], REMOVEFILTERS ( 'Calendar' ), 'Calendar'[Date] > StartDate, 'Calendar'[Date] <= EndDate )
+			RETURN
+			DIVIDE ( Terms, AvgHC )
+		displayFolder: Turnover
+		lineageTag: 12c03117-2963-4efa-8de9-10d3c58a5002
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Promotions =
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( fact_employee_master[EmployeeID] ),
+			    fact_employee_master[Event] = "Promotion"
+			)
+		formatString: 0
+		displayFolder: Headcount
+		lineageTag: 1997219a-e71e-4eab-b68c-c9ca529e0980
+
+	measure 'Avg. Tenure at Exit' = AVERAGE(fact_employee_master[TenureAtExitYrs])
+		displayFolder: Headcount
+		lineageTag: 8a834f8b-dd51-45af-8a3d-232fedf1f997
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Placeholder
+		isHidden
+		lineageTag: 4be63749-1592-45a9-aed9-7bd53405ad21
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Placeholder]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition (_Measures) = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Placeholder", STRING,
+				    { { "Use this table only for measures" } }
+				)
+
+	annotation PBI_Id = 48dd8d57f19f4c7481fe65e0e1601de4
+

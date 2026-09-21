@@ -1,0 +1,142 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "119994393ad0242b72d2",
+  "position": {
+    "x": 12.413793103448276,
+    "y": 14.187192118226601,
+    "z": 5000,
+    "height": 249.73426573426573,
+    "width": 316.86713286713285,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Executive Overview",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "How big is the workforce, and how is it changing?",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Workforce size and movement for the selected year. "
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Headcount ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "is the number of employees on the last day of the period. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "New Hires",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": ", "
+                  },
+                  {
+                    "value": "Terminations ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "and "
+                  },
+                  {
+                    "value": "Turnover Rate",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " are year-to-date, counted from 1 January. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Turnover Rate",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " = terminations ÷ average headcount, where average headcount is the mean of last year-end and current headcount. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Net Headcount Change",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " = hires − terminations."
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

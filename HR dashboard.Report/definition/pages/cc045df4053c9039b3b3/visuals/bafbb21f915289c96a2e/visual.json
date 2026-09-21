@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "bafbb21f915289c96a2e",
+  "position": {
+    "x": 823.743842364532,
+    "y": 14.187192118226601,
+    "z": 3000,
+    "height": 330.73891625615767,
+    "width": 440.68965517241378,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "treemap",
+    "query": {
+      "queryState": {
+        "Group": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_joblevel"
+                    }
+                  },
+                  "Property": "JobLevelName"
+                }
+              },
+              "queryRef": "dim_joblevel.JobLevelName",
+              "nativeQueryRef": "JobLevelName",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Headcount (EOP)"
+                }
+              },
+              "queryRef": "(_Measures).Headcount (EOP)",
+              "nativeQueryRef": "Headcount (EOP)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "tilingMethod": {
+              "expr": {
+                "Literal": {
+                  "Value": "'binary'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

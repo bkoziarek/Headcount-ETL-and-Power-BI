@@ -1,0 +1,131 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "5f824aaadc23b307911b",
+  "position": {
+    "x": 12.413793103448276,
+    "y": 14.187192118226601,
+    "z": 6000,
+    "height": 249.73426573426573,
+    "width": 316.86713286713285,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Turnover Analysis",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Where is turnover highest, and why do people leave?"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Turnover Rate ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "is terminations in the selected period divided by average headcount. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Leavers ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "are split into "
+                  },
+                  {
+                    "value": "Voluntary",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": ", "
+                  },
+                  {
+                    "value": "Involuntary ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "and "
+                  },
+                  {
+                    "value": "Retirement",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": ". "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "The "
+                  },
+                  {
+                    "value": "trend line",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " shows rolling 12-month turnover (terminations over the last 12 months ÷ average headcount), which smooths out month-to-month swings. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Small departments have few leavers, so their rates can move sharply."
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

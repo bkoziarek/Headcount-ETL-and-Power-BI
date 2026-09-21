@@ -1,0 +1,52 @@
+relationship 23cce5a4-e2b9-4437-9bdc-848dde79938d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_employee.HireDate
+	toColumn: LocalDateTable_5849c061-ca35-412e-bc26-76e564680214.Date
+
+relationship 765b9892-20c7-4241-9e2a-b1e7f0e086ff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_employee.TerminationDate
+	toColumn: LocalDateTable_3aa0b4e8-397e-46e8-a261-0bfd0bfe2d9c.Date
+
+relationship ae740b7e-6730-b0ba-badc-d39a98b643be
+	fromColumn: fact_monthly_snapshot.DepartmentID
+	toColumn: dim_department.DepartmentID
+
+relationship 970bda47-4105-3f6b-f5b0-2748875e8e90
+	fromColumn: fact_employee_master.DepartmentID
+	toColumn: dim_department.DepartmentID
+
+relationship 294cdc66-d20a-0756-b0e7-9b712d22753c
+	fromColumn: fact_employee_master.JobLevelID
+	toColumn: dim_joblevel.JobLevelID
+
+relationship 8703c61d-f325-3cb8-fc41-0f04c6ae36ed
+	fromColumn: fact_monthly_snapshot.JobLevelID
+	toColumn: dim_joblevel.JobLevelID
+
+relationship be98adfe-adbe-b4bf-f7f5-329d00758671
+	fromColumn: fact_monthly_snapshot.EmployeeID
+	toColumn: dim_employee.EmployeeID
+
+relationship dee186a7-7e1f-c434-782c-42acb217ece2
+	fromColumn: fact_employee_master.EmployeeID
+	toColumn: dim_employee.EmployeeID
+
+relationship 7c3040e7-a130-1327-798e-26f23eac67a9
+	fromColumn: fact_monthly_snapshot.MonthEnd
+	toColumn: Calendar.Date
+
+relationship d4e95865-1c4c-412f-bf73-2706c2ac2165
+	fromColumn: fact_employee_master.EffectiveFrom
+	toColumn: Calendar.Date
+
+relationship 9cd6d94d-361b-0f63-b02a-afeec18c86ad
+	isActive: false
+	fromColumn: fact_employee_master.EffectiveTo
+	toColumn: Calendar.Date
+
+relationship a8e27c27-c260-45d9-bdc5-ceaa49ef0225
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_monthly_snapshot.HireDate
+	toColumn: LocalDateTable_e78b73b1-2a15-4702-b9d7-5a91321eeb14.Date
+

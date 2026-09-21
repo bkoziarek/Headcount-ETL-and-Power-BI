@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "b53b6958c0a18690595b",
+  "displayName": "Executive Overview",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "32de2abd54a0781a6cde",
+    "type": "Drillthrough",
+    "parameters": []
+  },
+  "objects": {
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "185L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 7,
+                    "Percent": 0.6
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "75D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "displayArea": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

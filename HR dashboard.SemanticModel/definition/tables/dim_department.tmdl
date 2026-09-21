@@ -1,0 +1,34 @@
+table dim_department
+	lineageTag: 89959209-84e1-40a2-b001-95a74e808e94
+
+	column DepartmentID
+		dataType: string
+		lineageTag: abed85ac-861d-4816-bd6e-b6cf0870413e
+		summarizeBy: none
+		sourceColumn: DepartmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentName
+		dataType: string
+		lineageTag: 6edd26ff-e29d-4dfe-826b-a68e73ad20fb
+		summarizeBy: none
+		sourceColumn: DepartmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_department = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataPath & "\dim_department.csv"),[Delimiter=",", Encoding=65001]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"DepartmentID", type text}, {"DepartmentName", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

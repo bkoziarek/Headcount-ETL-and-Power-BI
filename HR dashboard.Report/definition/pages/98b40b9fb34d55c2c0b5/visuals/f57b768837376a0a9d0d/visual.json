@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "f57b768837376a0a9d0d",
+  "position": {
+    "x": 344.92610837438423,
+    "y": 14.187192118226601,
+    "z": 4000,
+    "height": 250.04926108374386,
+    "width": 510.73891625615767,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "YearQuarter"
+                }
+              },
+              "queryRef": "Calendar.YearQuarter",
+              "nativeQueryRef": "YearQuarter",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Rolling Turnover 12M"
+                }
+              },
+              "queryRef": "(_Measures).Rolling Turnover 12M",
+              "nativeQueryRef": "Rolling Turnover 12M"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

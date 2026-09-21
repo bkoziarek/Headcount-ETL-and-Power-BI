@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "0f78c6e45c7408b357a7",
+  "position": {
+    "x": 361.77339901477831,
+    "y": 14.187192118226601,
+    "z": 2000,
+    "height": 330.73891625615767,
+    "width": 440.68965517241378,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_department"
+                    }
+                  },
+                  "Property": "DepartmentName"
+                }
+              },
+              "queryRef": "dim_department.DepartmentName",
+              "nativeQueryRef": "DepartmentName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Headcount (EOP)"
+                }
+              },
+              "queryRef": "(_Measures).Headcount (EOP)",
+              "nativeQueryRef": "Headcount (EOP)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "(_Measures)"
+                  }
+                },
+                "Property": "Headcount (EOP)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

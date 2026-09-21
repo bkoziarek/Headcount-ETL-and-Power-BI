@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "90619e99c08391332a8c",
+  "position": {
+    "x": 730.64039408867,
+    "y": 305.9113300492611,
+    "z": 2000,
+    "height": 360,
+    "width": 538.22660098522169,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_employee_master"
+                    }
+                  },
+                  "Property": "TermReason"
+                }
+              },
+              "queryRef": "fact_employee_master.TermReason",
+              "nativeQueryRef": "TermReason",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Terminations"
+                }
+              },
+              "queryRef": "(_Measures).Terminations",
+              "nativeQueryRef": "Terminations"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "(_Measures)"
+                  }
+                },
+                "Property": "Terminations"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,151 @@
+table Calendar
+	lineageTag: a383f616-053c-4eba-ad1a-9d65d5ee1aa8
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: d416ac20-cdd8-410f-ac2c-a591a4c31d8b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: c1103418-a1e7-42f8-bdcd-bf8f31d6e86e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 11e8e58c-f190-4a39-83cf-4aeb6d0735d3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 58db9ed8-bf45-490f-98ec-5c5faea02542
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year-Month
+		lineageTag: a546551b-4614-436b-adb2-e10e4edb71eb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year-Month]
+		sortByColumn: YearMonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: 01d5616f-17c0-4473-9a65-75c4ff5cb892
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Number'
+		formatString: 0
+		lineageTag: 3bf089c9-44a6-4fe0-b3ce-adb9bc32c57f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Week Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week'
+		lineageTag: 0661483a-93fd-4004-96da-7c4d33c3d817
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day of Week]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day of Week Number'
+		formatString: 0
+		lineageTag: d153e42e-d27b-4ea4-8cbe-ff82cba86ef7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Day of Week Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarterNumber
+		formatString: 0
+		lineageTag: c0cb6a1d-27c1-4cd9-90d3-9b1a5a5c7b25
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [YearQuarterNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthNumber
+		formatString: 0
+		lineageTag: 60ef0ac7-4378-4918-893f-3dda7fb39c66
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [YearMonthNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		lineageTag: 6643fa4c-5a31-42a0-83db-3098d0924c45
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearQuarter]
+		sortByColumn: YearQuarterNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				
+				VAR MinDate =
+				    MINX(
+				        UNION(
+				            SELECTCOLUMNS('fact_monthly_snapshot', "Date", 'fact_monthly_snapshot'[MonthEnd]),
+				            SELECTCOLUMNS('fact_employee_master', "Date", 'fact_employee_master'[EffectiveFrom])
+				        ),
+				        [Date]
+				    )
+				VAR MaxDate =
+				    MAXX(
+				        UNION(
+				            SELECTCOLUMNS('fact_monthly_snapshot', "Date", 'fact_monthly_snapshot'[MonthEnd]),
+				            SELECTCOLUMNS('fact_employee_master', "Date", 'fact_employee_master'[EffectiveFrom])
+				        ),
+				        [Date]
+				    )
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR(MinDate, MaxDate),
+				    "Year", YEAR([Date]),
+				    "Month", FORMAT([Date], "MMMM"),
+				    "Month Number", MONTH([Date]),
+				    "Year-Month", FORMAT([Date], "MMM YYYY"),
+				    "Quarter", "Q" & FORMAT([Date], "Q"),
+				    "Week Number", WEEKNUM([Date]),
+				    "Day of Week", FORMAT([Date], "dddd"),
+				    "Day of Week Number", WEEKDAY([Date], 2),
+				    "YearQuarter", Year([Date])& " " &"Q" & QUARTER ( [Date] ),
+				    "YearQuarterNumber", YEAR([Date]) * 10 + QUARTER ([Date]) ,
+				    "YearMonthNumber", YEAR([Date]) * 100 + MONTH([Date])
+				)
+				
+				```
+
+	annotation PBI_Id = 01a6537882b845c595007396d1bd3756
+

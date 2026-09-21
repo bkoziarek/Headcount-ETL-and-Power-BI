@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "8fc0a663c7670d978c3d",
+  "position": {
+    "x": 179.11330049261085,
+    "y": 305.9113300492611,
+    "z": 1000,
+    "height": 360,
+    "width": 538.22660098522169,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_department"
+                    }
+                  },
+                  "Property": "DepartmentName"
+                }
+              },
+              "queryRef": "dim_department.DepartmentName",
+              "nativeQueryRef": "DepartmentName",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Turnover"
+                }
+              },
+              "queryRef": "(_Measures).Turnover",
+              "nativeQueryRef": "Turnover"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "(_Measures)"
+                  }
+                },
+                "Property": "Turnover"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

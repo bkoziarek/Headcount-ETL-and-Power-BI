@@ -1,0 +1,34 @@
+table dim_joblevel
+	lineageTag: 24c60105-7c84-42a6-a141-83c8e84b5264
+
+	column JobLevelID
+		dataType: string
+		lineageTag: 51a48426-df4f-4537-a704-bc2fd5b6c6bb
+		summarizeBy: none
+		sourceColumn: JobLevelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevelName
+		dataType: string
+		lineageTag: 554df50f-0c71-4060-b484-aeae00b2fb9d
+		summarizeBy: none
+		sourceColumn: JobLevelName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_joblevel = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataPath & "\dim_joblevel.csv"),[Delimiter=",", Encoding=65001]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"JobLevelID", type text}, {"JobLevelName", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

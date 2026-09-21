@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "cc045df4053c9039b3b3",
+  "displayName": "Headcount Composition",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "945d6c6619ed1c633497",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#d0eef7'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "75D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

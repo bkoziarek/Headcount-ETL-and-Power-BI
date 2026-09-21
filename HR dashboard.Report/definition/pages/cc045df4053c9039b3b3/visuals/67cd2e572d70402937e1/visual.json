@@ -1,0 +1,93 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "67cd2e572d70402937e1",
+  "position": {
+    "x": 361.77339901477831,
+    "y": 372.41379310344826,
+    "z": 4000,
+    "height": 330.73891625615767,
+    "width": 440.68965517241378,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_department"
+                    }
+                  },
+                  "Property": "DepartmentName"
+                }
+              },
+              "queryRef": "dim_department.DepartmentName",
+              "nativeQueryRef": "DepartmentName",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_monthly_snapshot"
+                    }
+                  },
+                  "Property": "Gender"
+                }
+              },
+              "queryRef": "fact_monthly_snapshot.Gender",
+              "nativeQueryRef": "Gender"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Headcount (EOP)"
+                }
+              },
+              "queryRef": "(_Measures).Headcount (EOP)",
+              "nativeQueryRef": "Headcount (EOP)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "(_Measures)"
+                  }
+                },
+                "Property": "Headcount (EOP)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "23c25bc53106212e1168",
+  "position": {
+    "x": 12.413793103448276,
+    "y": 14.187192118226601,
+    "z": 5000,
+    "height": 249.73426573426573,
+    "width": 316.86713286713285,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Hiring & Mobility",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Where do we hire and promote, and where do people leave fastest?",
+                    "textStyle": {
+                      "fontStyle": "italic"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "New hires",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": " by month and department, and promotions per month (Promotion events only, not department or level changes). "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Average tenure ",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "at exit is the years between hire date and termination date, so shorter bars are where people leave sooner. "
+                  }
+                ],
+                "listType": "bullet"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Averages based on only a few leavers are noisy, so check the counts in the tooltip."
+                  }
+                ],
+                "listType": "bullet"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

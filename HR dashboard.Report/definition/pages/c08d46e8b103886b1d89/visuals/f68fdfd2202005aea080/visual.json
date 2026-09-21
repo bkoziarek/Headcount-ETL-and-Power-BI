@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "f68fdfd2202005aea080",
+  "position": {
+    "x": 401.67487684729065,
+    "y": 14.187192118226601,
+    "z": 3000,
+    "height": 293,
+    "width": 862,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendar"
+                    }
+                  },
+                  "Property": "Year-Month"
+                }
+              },
+              "queryRef": "Calendar.Year-Month",
+              "nativeQueryRef": "Year-Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "(_Measures)"
+                    }
+                  },
+                  "Property": "Promotions"
+                }
+              },
+              "queryRef": "(_Measures).Promotions",
+              "nativeQueryRef": "Promotions"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

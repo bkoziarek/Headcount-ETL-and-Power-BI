@@ -1,0 +1,97 @@
+table dim_employee
+	lineageTag: 2028ab33-a9ee-4c7f-8c1d-c65f10933935
+
+	column EmployeeID
+		dataType: string
+		lineageTag: ab2e9fc9-7fcc-4c0e-84a3-8ceac94c2250
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FirstName
+		dataType: string
+		lineageTag: 33159777-09f7-4d7c-9f15-5a141328cd8e
+		summarizeBy: none
+		sourceColumn: FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastName
+		dataType: string
+		lineageTag: 24de9088-b943-46fc-90ec-375929842113
+		summarizeBy: none
+		sourceColumn: LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 02ec17e2-8ca9-49c6-9266-f16acfd04335
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentID
+		dataType: string
+		lineageTag: 50bcd2f3-31bd-448b-8d80-0cd4d231be54
+		summarizeBy: none
+		sourceColumn: DepartmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevelID
+		dataType: string
+		lineageTag: eb9a640f-69c3-4423-bffc-bf82e37d4463
+		summarizeBy: none
+		sourceColumn: JobLevelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column HireDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9d20ff0c-a7be-4eee-8b9d-e39cb50af2cd
+		summarizeBy: none
+		sourceColumn: HireDate
+
+		variation Variation
+			isDefault
+			relationship: 23cce5a4-e2b9-4437-9bdc-848dde79938d
+			defaultHierarchy: LocalDateTable_5849c061-ca35-412e-bc26-76e564680214.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TerminationDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da381a24-5611-4f63-a04b-2bc383ad71bf
+		summarizeBy: none
+		sourceColumn: TerminationDate
+
+		variation Variation
+			isDefault
+			relationship: 765b9892-20c7-4241-9e2a-b1e7f0e086ff
+			defaultHierarchy: LocalDateTable_3aa0b4e8-397e-46e8-a261-0bfd0bfe2d9c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_employee = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataPath & "\dim_employee.csv"),[Delimiter=",", Encoding=65001]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EmployeeID", type text}, {"FirstName", type text}, {"LastName", type text}, {"Gender", type text}, {"DepartmentID", type text}, {"JobLevelID", type text}, {"HireDate", type date}, {"TerminationDate", type date}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

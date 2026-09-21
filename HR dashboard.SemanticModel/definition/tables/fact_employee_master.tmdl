@@ -1,0 +1,111 @@
+table fact_employee_master
+	lineageTag: a52ba916-8be6-4295-9c31-b9cc6a160af8
+
+	column EmployeeID
+		dataType: string
+		lineageTag: 89d09311-dc67-4228-8a3d-98bf4cfdc567
+		summarizeBy: none
+		sourceColumn: EmployeeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EffectiveFrom
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d908271c-e88f-4a6b-b875-657bd7831029
+		summarizeBy: none
+		sourceColumn: EffectiveFrom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EffectiveTo
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1b4266d-4e62-487b-9156-99aac08e3276
+		summarizeBy: none
+		sourceColumn: EffectiveTo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Event
+		dataType: string
+		lineageTag: 74570004-0aaf-45f7-bb2a-2edf3832d83d
+		summarizeBy: none
+		sourceColumn: Event
+
+		annotation SummarizationSetBy = Automatic
+
+	column DepartmentID
+		dataType: string
+		lineageTag: 09a6af8e-5926-452d-9b05-b8261dbe4241
+		summarizeBy: none
+		sourceColumn: DepartmentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 0e041e0f-3ef6-4974-879e-8de07f508e0f
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobLevelID
+		dataType: string
+		lineageTag: c3a47933-dce7-426f-a1e0-81e9eb7032ef
+		summarizeBy: none
+		sourceColumn: JobLevelID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 45cd82f2-e206-4802-9be4-0ab17def4f63
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column TermReason =
+			IF(LEFT(fact_employee_master[Event],11) = "Termination", MID(fact_employee_master[Event],14,20)
+			)
+		lineageTag: 77f1cb83-f75d-4410-8818-662012319063
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column TenureAtExitYrs =
+			
+			IF (
+			    LEFT ( fact_employee_master[Event], 11 ) = "Termination",
+			    DIVIDE (
+			        DATEDIFF ( RELATED ( dim_employee[HireDate] ), fact_employee_master[EffectiveFrom], DAY ),
+			        365.25 -- taking fractional years into consideration
+			    )
+			)
+		lineageTag: d72ec1ae-5f84-4410-821e-8cd457778180
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_employee_master = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataPath & "\output\employee_master.csv"),[Delimiter=",", Encoding=65001]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EmployeeID", type text}, {"EffectiveFrom", type date}, {"EffectiveTo", type date}, {"Event", type text}, {"DepartmentID", type text}, {"Gender", type text}, {"JobLevelID", type text}, {"Status", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
