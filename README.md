@@ -4,7 +4,7 @@ A Python ETL pipeline and a four-page Power BI report that answer core people-an
 
 > **All data in this repository is synthetic.** It was generated for demonstration and contains no real employees.
 
-![Executive Overview](docs/images/page1_executive_overview.png)
+![Executive Overview](docs/images/page1_executive_overview.PNG)
 
 ---
 
@@ -122,7 +122,7 @@ In this dataset the same-day check excludes one of the 1,000 employees in `dim_e
 
 ## Power BI data model
 
-![Data model](docs/images/data_model.png)
+![Data model](docs/images/data_model.PNG)
 
 | Table | Type | Notes |
 |---|---|---|
@@ -166,25 +166,25 @@ Use the Year slicer (single select) on every page.
 
 ### 1. Executive Overview
 
-![Executive Overview](docs/images/page1_executive_overview.png)
+![Executive Overview](docs/images/page1_executive_overview.PNG)
 
 Workforce size and movement for the selected year. Headcount is the number of employees on the last day of the period. New Hires, Terminations and Turnover are year-to-date. Net Headcount Change = hires - terminations.
 
 ### 2. Turnover Analysis
 
-![Turnover Analysis](docs/images/page2_turnover_analysis.png)
+![Turnover Analysis](docs/images/page2_turnover_analysis.PNG)
 
 Turnover by department, split by reason (voluntary, involuntary, retirement), with a rolling 12-month trend that smooths month-to-month swings. Small departments have few leavers, so their rates can move sharply.
 
 ### 3. Headcount Composition
 
-![Headcount Composition](docs/images/page3_headcount_composition.png)
+![Headcount Composition](docs/images/page3_headcount_composition.PNG)
 
 Headcount at the end of the selected period by department, job level, gender share and tenure band. Tenure is measured from hire date to the period end.
 
 ### 4. Hiring & Mobility
 
-![Hiring and Mobility](docs/images/page4_hiring_mobility.png)
+![Hiring and Mobility](docs/images/page4_hiring_mobility.PNG)
 
 Hires by month and department, promotions per month (Promotion events only), and average tenure at exit by department. Averages based on a few leavers are noisy, so check the counts in the tooltip.
 
