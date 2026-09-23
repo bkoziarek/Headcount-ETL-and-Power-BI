@@ -246,7 +246,7 @@ The recomputation also confirmed that hires minus terminations equals the change
 - `pip install -r requirements.txt` (pandas, numpy)
 - Power BI Desktop (free)
 
-Tested with numpy 2.5.3 and pandas **[TODO: your pandas version]**.
+Tested with numpy 2.5.3 and pandas 3.0.5.
 
 ### 1. Run the ETL (optional)
 
